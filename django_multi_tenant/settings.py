@@ -27,7 +27,7 @@ DB_PWD = os.environ['DB_PWD']
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 't@e7642n93f#!)g@r(x$_qb_whyzkm-(!6&v_rfs8rxboh@jm2'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
