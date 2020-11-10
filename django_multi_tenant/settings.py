@@ -9,11 +9,18 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+DB_ENGINE = os.environ.get('DB_ENGINE', 'tenant_schemas.postgresql_backend')
+DB_NAME = os.environ.get('DB_NAME', 'django_multi_tenant')
+DB_URL = os.environ.get('DB_HOST', 'localhost')
+DB_PORT = os.environ.get('DB_PORT', 5432)
+
+DB_USER = os.environ['DB_USER']
+DB_PWD = os.environ['DB_PWD']
 
 
 # Quick-start development settings - unsuitable for production
@@ -62,7 +69,7 @@ TENANT_APPS = [
 ]
 
 MIDDLEWARE = [
-    'tenant_schemas.middleware.TenantMiddleWare',
+    'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -98,8 +105,13 @@ WSGI_APPLICATION = 'django_multi_tenant.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': DB_ENGINE,
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PWD,
+        'HOST': DB_URL,
+        'PORT': DB_PORT,
+        'CHARSET': 'UTF8'
     }
 }
 
