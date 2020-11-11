@@ -34,7 +34,7 @@ That will create the first tenant (which usually is the base to create new ones)
 python manage.py tenant_command createsuperuser --schema=public
 ```
 
-Note: the same command can be used to create admin users on the different tenants that you create
+**_Note:_** the same command can be used to create admin users on the different tenants that you create, just remember to change the --schema to the one that you define
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

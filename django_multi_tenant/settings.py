@@ -27,7 +27,7 @@ DB_PWD = os.environ['DB_PWD']
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ.get('SECRET_KEY', 't@e7642n93f#!)g@r(x$_qb_whyzkm-(!6&v_rfs8rxboh@jm2')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'tenant_schemas',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 SHARED_APPS = [
+    'tenant_schemas',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -65,7 +67,7 @@ TENANT_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tenant',
+    'store',
 ]
 
 MIDDLEWARE = [
@@ -157,3 +159,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+TENANT_MODEL = 'shared.Client'
